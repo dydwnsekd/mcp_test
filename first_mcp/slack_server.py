@@ -6,7 +6,9 @@ import os
 mcp = FastMCP("SlackMCP")
 
 # Slack Bot Token 불러오기
-SLACK_API_TOKEN = os.getenv("SLACK_API_TOKEN")
+SLACK_API_TOKEN = os.environ.get("SLACK_BOT_TOKEN")
+SLACK_TEAM_ID = os.environ.get("SLACK_TEAM_ID")
+SLACK_CHANNEL_IDS = os.environ.get("SLACK_CHANNEL_IDS", "").split(",") if os.environ.get("SLACK_CHANNEL_IDS") else []
 
 # Slack API 요청 공통 함수
 def slack_api_post(endpoint: str, payload: dict) -> dict:
